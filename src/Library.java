@@ -1,11 +1,25 @@
 import java.util.*;
 import java.util.stream.Collectors;
-class Library {
 
+class Library {
     private final Map<Integer, Book> books = new HashMap<>();
 
     public void addBook(Book book) {
         books.put(book.getId(), book);
+    }
+
+    public Book getBookById(int id) {
+        return books.get(id);
+    }
+
+    public Map<Boolean, List<String>> getBooksByAvailability() {
+        return books.values().stream()
+                .collect(Collectors.partitioningBy(Book::getIsAvailable, Collectors.mapping(Book::getTitle, Collectors.toList())));
+    }
+
+    public Map<String, List<String>> getBooksByAuthor() {
+        return books.values().stream()
+                .collect(Collectors.groupingBy(Book::getAuthor,Collectors.mapping(Book::getTitle, Collectors.toList())));
     }
 
     public List<Book> getBooksSortedByTitle() {

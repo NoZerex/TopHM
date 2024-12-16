@@ -25,5 +25,15 @@ public class Main {
 
         System.out.println("Авторы: ");
         library.getAuthors().forEach(System.out::println);
+
+        System.out.println("Книга под номером один: ");
+        System.out.println(library.getBookById(1).getTitle());
+
+        System.out.println("Книги по доступности: ");
+        System.out.println(library.getBooksByAvailability());
+
+        System.out.println("Книги по авторам: ");
+        System.out.println(library.getBooksByAuthor());
+
     }
 }
